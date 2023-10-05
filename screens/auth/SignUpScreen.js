@@ -1,14 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-const WelcomeScreen = () => {
+const SignUpScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.welcomeText}>Welcome</Text>
-
-      <Button title="Login" onPressed={() => console.log("Click")}></Button>
-
-      <Button title="Sign Up" onPressed={() => console.log("Click")}></Button>
+      <Text style={styles.welcomeText}>SignUpScreen</Text>
     </View>
   );
 };
@@ -27,4 +23,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WelcomeScreen;
+export default SignUpScreen;
