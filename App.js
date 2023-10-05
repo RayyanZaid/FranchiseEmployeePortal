@@ -1,28 +1,39 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Platform, SafeAreaView, Image, Alert, Button } from "react-native";
+import React, { useState, useEffect } from "react";
+import { SafeAreaView, Button, Alert } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// Screens
+
+import SplashScreen from "./SplashScreen";
+import WelcomeScreen from "./screens/Welcome";
+
+// Navigator
+import {
+  NavigationContainer,
+  useNavigationContainerRef,
+} from "@react-navigation/native";
 
 export default function App() {
-  console.log("App Executed");
+  const [isLoading, setIsLoading] = useState(true);
 
-  let x = 1;
-  x.toString();
+  const navigationRef = useNavigationContainerRef();
 
-  console.log(require('./assets/logo.png'))
+  // Define the function to be executed when loading is complete
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
+  const Stack = createNativeStackNavigator(); // Stack contains Screen & Navigator properties
   return (
-    <SafeAreaView style={styles.container}>
-      <Button title="String" color="orange" 
-      onPress={() => Alert.alert("My title" , "My message" ,[
-        {text: "Yes"} , {text: "No"}
-      ] )}></Button>
+    <SafeAreaView style={{ flex: 1 }}>
+      {isLoading ? (
+        <SplashScreen onLoadingComplete={handleLoadingComplete} />
+      ) : (
+        <NavigationContainer ref={navigationRef}>
+          <Stack.Navigator>
+            <Stack.Screen name="Welcome" component={WelcomeScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      )}
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
