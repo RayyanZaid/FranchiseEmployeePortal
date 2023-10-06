@@ -16,7 +16,7 @@ const SplashScreen = ({ onLoadingComplete }) => {
       <Image style={styles.splashLogo} source={require("./assets/logo.png")} />
 
       <View style={styles.progressBarContainer}>
-        <LoadingProgressBar duration={3000} />
+        <LoadingProgressBar duration={1000} />
       </View>
     </View>
   );
