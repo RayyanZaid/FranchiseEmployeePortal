@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import LoadingProgressBar from "./components/LoadingProgressBar";
 
+const loadingTime = 1000;
 const SplashScreen = ({ onLoadingComplete }) => {
   useEffect(() => {
     const loadingTask = setTimeout(() => {
       onLoadingComplete();
-    }, 3000);
+    }, loadingTime);
 
     return () => clearTimeout(loadingTask);
   }, [onLoadingComplete]);
@@ -16,7 +17,7 @@ const SplashScreen = ({ onLoadingComplete }) => {
       <Image style={styles.splashLogo} source={require("./assets/logo.png")} />
 
       <View style={styles.progressBarContainer}>
-        <LoadingProgressBar duration={1000} />
+        <LoadingProgressBar duration={loadingTime} />
       </View>
     </View>
   );

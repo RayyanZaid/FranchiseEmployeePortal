@@ -30,8 +30,21 @@ export default function App() {
       ) : (
         <NavigationContainer ref={navigationRef}>
           <Stack.Navigator>
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="SignUp" component={SignUpScreen} />
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={{
+                headerShown: false,
+              }}
+              a
+            />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUpScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       )}
