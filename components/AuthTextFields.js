@@ -16,7 +16,7 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 const AuthTextFields = () => {
-  const [username, onChangeUsername] = React.useState("");
+  const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
 
   const [roleData, setRoleData] = React.useState("");
@@ -30,12 +30,12 @@ const AuthTextFields = () => {
       <DropdownComponent sendDataToParent={handleDataFromChild} />
       {/* <Text> Data from child : {roleData}</Text> */}
 
-      <Text style={global_text_styles.label}>Username</Text>
+      <Text style={global_text_styles.label}>Email</Text>
       <TextInput
         style={global_text_styles.input}
-        onChangeText={onChangeUsername}
-        value={username}
-        placeholder="Enter your username"
+        onChangeText={onChangeEmail}
+        value={email}
+        placeholder="Enter your email"
         keyboardType="default"
       />
 

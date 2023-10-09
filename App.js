@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "./SplashScreen";
 import LoginScreen from "./screens/auth/LoginScreen";
 import SignUpScreen from "./screens/auth/SignUpScreen";
+
 // Navigatorr
 import {
   NavigationContainer,
