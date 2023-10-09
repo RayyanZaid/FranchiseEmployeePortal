@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import global_text_styles from "../../global_text_styles";
 import global_button_styles from "../../global_button_styles";
 const SignUpScreen = () => {
@@ -7,6 +13,7 @@ const SignUpScreen = () => {
 
   const [name, setName] = useState("");
 
+  const [test, onChangeTest] = useState("");
   const sendRequest = async () => {
     try {
       const response = await fetch(
@@ -20,9 +27,7 @@ const SignUpScreen = () => {
       );
 
       if (response.ok) {
-        const data = await response.json();
-        const nameFromDjango = data["name"];
-        setName(nameFromDjango);
+        print("Good");
       } else {
         console.error("Failed to send request");
       }
@@ -64,8 +69,25 @@ const SignUpScreen = () => {
       >
         <Text style={global_button_styles.buttonText}>Admin</Text>
       </TouchableOpacity>
-
+      <TextInput
+        style={global_text_styles.input}
+        onChangeText={onChangeTest}
+        value={test}
+        placeholder="Enter name test"
+        keyboardType="default"
+      />
       <Text>{name}</Text>
+
+      <Text style={global_button_styles.buttonText}>Submit</Text>
+
+      <TouchableOpacity
+        style={global_button_styles.signUpButton}
+        onPress={() => {
+          sendRequest();
+        }}
+      >
+        <Text style={global_button_styles.buttonText}>Submit</Text>
+      </TouchableOpacity>
     </View>
   );
 };
