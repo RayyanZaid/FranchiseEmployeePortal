@@ -1,39 +1,28 @@
-import React from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  Dimensions,
-  Text,
-} from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, StyleSheet, TextInput, Text } from "react-native";
 
 import global_text_styles from "../global_text_styles";
 
-// Components
-import DropdownComponent from "./Dropdown";
+const AuthTextFields = ({ onEmailChange, onPasswordChange }) => {
+  const [email, onChangeEmail] = useState("");
+  const [password, onChangePassword] = useState("");
 
-const screenWidth = Dimensions.get("window").width;
-const screenHeight = Dimensions.get("window").height;
+  const handleEmailInputChange = (text) => {
+    onChangeEmail(text);
+    onEmailChange(text); // Send email data to the parent
+  };
 
-const AuthTextFields = () => {
-  const [email, onChangeEmail] = React.useState("");
-  const [password, onChangePassword] = React.useState("");
-
-  const [roleData, setRoleData] = React.useState("");
-
-  const handleDataFromChild = (data) => {
-    setRoleData(data);
+  const handlePasswordInputChange = (text) => {
+    onChangePassword(text);
+    onPasswordChange(text); // Send password data to the parent
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <DropdownComponent sendDataToParent={handleDataFromChild} />
-      {/* <Text> Data from child : {roleData}</Text> */}
-
       <Text style={global_text_styles.label}>Email</Text>
       <TextInput
         style={global_text_styles.input}
-        onChangeText={onChangeEmail}
+        onChangeText={handleEmailInputChange}
         value={email}
         placeholder="Enter your email"
         keyboardType="default"
@@ -42,7 +31,7 @@ const AuthTextFields = () => {
       <Text style={global_text_styles.label}>Password</Text>
       <TextInput
         style={global_text_styles.input}
-        onChangeText={onChangePassword}
+        onChangeText={handlePasswordInputChange}
         value={password}
         placeholder="Enter your password"
         keyboardType="default"
