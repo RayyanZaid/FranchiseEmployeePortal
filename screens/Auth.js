@@ -33,6 +33,7 @@ const AuthScreen = () => {
   const [phoneFromChild, setPhoneFromChild] = useState("");
   const [passwordFromChild, setPasswordFromChild] = useState("");
   const [codeFromChild, setCodeFromChild] = useState("");
+  const [isPhoneLength10, setIsPhoneLength10] = useState(false);
 
   const [isSignIn, setIsSignIn] = useState(true);
 
@@ -41,6 +42,12 @@ const AuthScreen = () => {
   };
   const handlePhoneChange = (phone) => {
     setPhoneFromChild(phoneFromChild);
+
+    if (phone.length === 10) {
+      setIsPhoneLength10(true);
+    } else {
+      setIsPhoneLength10(false);
+    }
   };
 
   const handlePasswordChange = (password) => {
@@ -56,19 +63,41 @@ const AuthScreen = () => {
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <Image
-        style={global_image_styles.jackLogo}
-        source={require("../assets/jackhead.png")}
-      />
       <View style={styles.buttonContainer}></View>
 
+      <View style={styles.leftSemicircle} />
+      <View style={styles.rightSemicircle} />
+
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <DropdownComponent onRoleChange={handleRoleChange} />
+        <View style={styles.horizontalContainer}>
+          <Image
+            style={global_image_styles.jackLogoRightTilt}
+            source={require("../assets/jackhead.png")}
+          />
+          <DropdownComponent onRoleChange={handleRoleChange} />
+          <Image
+            style={global_image_styles.jackLogoLeftTilt}
+            source={require("../assets/jackhead.png")}
+          />
+        </View>
 
         <AuthTextFields
           onPhoneChange={handlePhoneChange}
           onPasswordChange={handlePasswordChange}
         />
+
+        {isPhoneLength10 && !isSignIn && (
+          <TouchableOpacity
+            style={{
+              marginTop: screenHeight * 0.01,
+            }}
+            onPress={() => console.log("Verification")}
+          >
+            <Text style={global_text_styles.regular_blue}>
+              Send Verification Code
+            </Text>
+          </TouchableOpacity>
+        )}
 
         {isSignIn === false && (
           <SignUpComponent
@@ -101,7 +130,7 @@ const AuthScreen = () => {
               padding: 10,
               width: screenWidth * 0.9,
             }}
-            onPress={() => console.log("User clicked Sign up")}
+            onPress={() => console.log(phoneFromChild.length)}
           >
             <Text style={global_text_styles.buttonText}>Sign up</Text>
           </TouchableOpacity>
@@ -173,6 +202,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: 20,
+  },
+
+  horizontalContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 

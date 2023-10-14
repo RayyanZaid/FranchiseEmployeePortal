@@ -21,7 +21,7 @@ const global_text_styles = StyleSheet.create({
 
   input: {
     ...fontStyles,
-    height: screenHeight * 0.08,
+    height: screenHeight * 0.06,
     width: screenWidth * 0.8,
     borderWidth: 1,
     padding: 10,

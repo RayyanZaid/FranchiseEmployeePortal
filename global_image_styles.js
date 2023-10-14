@@ -4,12 +4,23 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 const global_image_styles = StyleSheet.create({
-  jackLogo: {
-    width: screenHeight * 0.15,
-    height: screenHeight * 0.15,
-    alignSelf: "center",
+  jackLogoRightTilt: {
+    width: screenHeight * 0.05,
+    height: screenHeight * 0.05,
+    alignSelf: "flex-start",
+    marginRight: screenWidth * 0.03,
     justifyContent: "center",
-    marginTop: 20,
+
+    transform: [{ rotate: "330deg" }],
+  },
+  jackLogoLeftTilt: {
+    width: screenHeight * 0.05,
+    height: screenHeight * 0.05,
+    alignSelf: "flex-start",
+    marginLeft: screenWidth * 0.03,
+    justifyContent: "center",
+
+    transform: [{ rotate: "30deg" }],
   },
 });
 
