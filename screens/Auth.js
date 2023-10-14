@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   Image,
+  TextInput,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -34,6 +35,7 @@ const AuthScreen = () => {
   const [passwordFromChild, setPasswordFromChild] = useState("");
   const [codeFromChild, setCodeFromChild] = useState("");
   const [isPhoneLength10, setIsPhoneLength10] = useState(false);
+  const [verification, setVerification] = useState("");
 
   const [isSignIn, setIsSignIn] = useState(true);
 
@@ -56,6 +58,10 @@ const AuthScreen = () => {
 
   const handleCodeChange = (code) => {
     setCodeFromChild(code);
+  };
+
+  const onSendVerificationCode = () => {
+    console.log("Sent a 4-digit code to your phone");
   };
 
   return (
@@ -87,16 +93,27 @@ const AuthScreen = () => {
         />
 
         {isPhoneLength10 && !isSignIn && (
-          <TouchableOpacity
-            style={{
-              marginTop: screenHeight * 0.01,
-            }}
-            onPress={() => console.log("Verification")}
-          >
-            <Text style={global_text_styles.regular_blue}>
-              Send Verification Code
-            </Text>
-          </TouchableOpacity>
+          <View>
+            <TextInput
+              style={global_text_styles.input}
+              onChangeText={setVerification}
+              value={verification}
+              placeholder="Verification Code"
+              keyboardType="phone-pad"
+              placeholderTextColor="black"
+              maxLength={4}
+            />
+            <TouchableOpacity
+              style={{
+                marginTop: screenHeight * 0.01,
+              }}
+              onPress={onSendVerificationCode}
+            >
+              <Text style={global_text_styles.regular_blue}>
+                Send Verification Code
+              </Text>
+            </TouchableOpacity>
+          </View>
         )}
 
         {isSignIn === false && (
@@ -113,7 +130,7 @@ const AuthScreen = () => {
               marginTop: screenHeight * 0.05,
               borderRadius: 20,
               padding: 10,
-              width: screenWidth * 0.9,
+              width: screenWidth * 0.8,
             }}
             onPress={() => console.log("User clicked Sign in")}
           >
@@ -128,7 +145,7 @@ const AuthScreen = () => {
               marginTop: screenHeight * 0.05,
               borderRadius: 20,
               padding: 10,
-              width: screenWidth * 0.9,
+              width: screenWidth * 0.8,
             }}
             onPress={() => console.log(phoneFromChild.length)}
           >

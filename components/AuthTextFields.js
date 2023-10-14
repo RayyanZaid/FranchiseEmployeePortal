@@ -21,7 +21,6 @@ const AuthTextFields = ({ onPhoneChange, onPasswordChange }) => {
   const [formattedPhone, setFormattedPhone] = useState("");
   const [password, onChangePassword] = useState("");
   const [isPasswordVisible, setPasswordVisible] = useState(false);
-  const [verification, setVerification] = useState("");
 
   const handlePhoneInputChange = (text) => {
     const raw = text.replace(/\D/g, "");
@@ -63,7 +62,7 @@ const AuthTextFields = ({ onPhoneChange, onPasswordChange }) => {
         style={global_text_styles.input}
         onChangeText={handlePhoneInputChange}
         value={rawPhone.length === 10 ? formattedPhone : rawPhone}
-        placeholder="Phone number: (___)-___-____"
+        placeholder="Phone number"
         keyboardType="phone-pad"
         placeholderTextColor="black"
         maxLength={14} // Limit to the (___)-___-____ format
@@ -89,16 +88,6 @@ const AuthTextFields = ({ onPhoneChange, onPasswordChange }) => {
           />
         </View>
       </View>
-
-      <TextInput
-        style={global_text_styles.input}
-        onChangeText={setVerification}
-        value={verification}
-        placeholder="Verification Code"
-        keyboardType="phone-pad"
-        placeholderTextColor="black"
-        maxLength={4} // Limit to the (___)-___-____ format
-      />
     </SafeAreaView>
   );
 };
