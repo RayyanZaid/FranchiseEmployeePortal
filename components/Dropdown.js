@@ -12,7 +12,7 @@ const data = [
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-const DropdownComponent = ({ sendDataToParent }) => {
+const DropdownComponent = ({ onRoleChange }) => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
@@ -20,23 +20,11 @@ const DropdownComponent = ({ sendDataToParent }) => {
     setValue(item.value);
     setIsFocus(false);
 
-    sendDataToParent(item.value); // Pass the selected value directly
-  };
-
-  console.log("Role: ", value);
-
-  const renderLabel = () => {
-    if (value || isFocus) {
-      return (
-        <Text style={[styles.label, isFocus && { color: "blue" }]}>Role</Text>
-      );
-    }
-    return null;
+    onRoleChange(item.value); // Pass the selected value directly
   };
 
   return (
     <View style={styles.container}>
-      {renderLabel()}
       <Dropdown
         style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
         placeholderStyle={styles.placeholderStyle}
@@ -71,9 +59,6 @@ export default DropdownComponent;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
-
-    margin: screenHeight * 0.04,
     width: screenWidth * 0.55,
     height: screenHeight * 0.07,
   },
@@ -83,14 +68,13 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 8,
     padding: 8,
-    margin: 10,
   },
   icon: {
     marginRight: 5,
   },
   label: {
     position: "absolute",
-    backgroundColor: "white",
+
     left: 22,
     top: 8,
     zIndex: 999,

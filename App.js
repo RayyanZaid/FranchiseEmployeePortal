@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, Button, Alert } from "react-native";
+import { SafeAreaView, Button, Alert, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // Screens
 
 import SplashScreen from "./SplashScreen";
-import LoginScreen from "./screens/auth/LoginScreen";
-import SignUpScreen from "./screens/auth/SignUpScreen";
+import AuthScreen from "./screens/Auth";
 
 // Navigatorr
 import {
@@ -25,26 +24,20 @@ export default function App() {
 
   const Stack = createNativeStackNavigator(); // Stack contains Screen & Navigator properties
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.container}>
       {isLoading ? (
         <SplashScreen onLoadingComplete={handleLoadingComplete} />
       ) : (
         <NavigationContainer ref={navigationRef}>
           <Stack.Navigator>
             <Stack.Screen
-              name="Login"
-              component={LoginScreen}
+              name="SignIn"
+              component={AuthScreen}
               options={{
                 headerShown: false,
+                animation: "none",
               }}
               a
-            />
-            <Stack.Screen
-              name="SignUp"
-              component={SignUpScreen}
-              options={{
-                headerShown: false,
-              }}
             />
           </Stack.Navigator>
         </NavigationContainer>
@@ -52,3 +45,10 @@ export default function App() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#CFEDF5",
+  },
+});

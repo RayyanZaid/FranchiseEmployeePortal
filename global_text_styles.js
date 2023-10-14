@@ -5,10 +5,10 @@ const screenHeight = Dimensions.get("window").height;
 
 const global_text_styles = StyleSheet.create({
   titleText: {
-    fontSize: 48,
+    fontSize: 36,
     fontWeight: "bold",
     color: "black",
-    margin: screenHeight * 0.04,
+    margin: screenHeight * 0.02, // Adjust this value to reduce vertical spacing
     padding: 10,
     width: screenWidth * 0.5,
     textAlign: "center",
@@ -17,20 +17,21 @@ const global_text_styles = StyleSheet.create({
   input: {
     height: screenHeight * 0.05,
     width: screenWidth * 0.7,
-    margin: 12,
+
     borderWidth: 1,
     padding: 10,
-    borderRadius: 18, // Adjust the border radius as needed
+    borderRadius: 30, // Adjust the border radius as needed
     borderWidth: 3,
   },
 
   label: {
     height: screenHeight * 0.05,
     width: screenWidth * 0.7,
-    marginTop: screenHeight * 0.05,
-    textAlign: "center",
+    marginTop: screenHeight * 0.04,
+    paddingLeft: screenWidth * 0.03,
+    textAlign: "left",
     fontWeight: "bold",
-    fontSize: 24,
+    fontSize: 16,
   },
 });
 

@@ -26,8 +26,8 @@ const global_button_styles = StyleSheet.create({
     margin: screenHeight * 0.05,
   },
   buttonText: {
-    color: "#fff",
-    fontSize: screenHeight * 0.04,
+    color: "black",
+    fontSize: screenHeight * 0.03,
     fontWeight: "bold",
     textAlign: "center",
   },
