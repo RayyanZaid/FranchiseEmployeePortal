@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, Button, Alert, StyleSheet } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// Screens
+import { useFonts } from "expo-font";
 
 import SplashScreen from "./SplashScreen";
 import AuthScreen from "./screens/Auth";
 
-// Navigatorr
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -17,12 +16,21 @@ export default function App() {
 
   const navigationRef = useNavigationContainerRef();
 
-  // Define the function to be executed when loading is complete
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
 
-  const Stack = createNativeStackNavigator(); // Stack contains Screen & Navigator properties
+  const [fontsLoaded] = useFonts({
+    Gabarito: require("./assets/fonts/Gabarito-VariableFont_wght.ttf"),
+  });
+
+  useEffect(() => {
+    if (!fontsLoaded && isLoading) {
+      return;
+    }
+  }, [fontsLoaded, isLoading]);
+
+  const Stack = createNativeStackNavigator();
   return (
     <SafeAreaView style={styles.container}>
       {isLoading ? (
@@ -37,7 +45,6 @@ export default function App() {
                 headerShown: false,
                 animation: "none",
               }}
-              a
             />
           </Stack.Navigator>
         </NavigationContainer>
@@ -49,6 +56,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#CFEDF5",
+    backgroundColor: "#fff",
   },
 });

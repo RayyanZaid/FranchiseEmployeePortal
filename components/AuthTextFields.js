@@ -4,7 +4,8 @@ import {
   StyleSheet,
   TextInput,
   Text,
-  View, // Import View
+  View,
+  Dimensions,
 } from "react-native";
 
 import global_text_styles from "../global_text_styles";
@@ -12,19 +13,42 @@ import global_text_styles from "../global_text_styles";
 import Icon from "react-native-vector-icons/Feather";
 import { Dropdown } from "react-native-element-dropdown";
 
-const AuthTextFields = ({ onEmailChange, onPasswordChange }) => {
-  const [email, onChangeEmail] = useState("");
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
+
+const AuthTextFields = ({ onPhoneChange, onPasswordChange }) => {
+  const [rawPhone, setRawPhone] = useState("");
+  const [formattedPhone, setFormattedPhone] = useState("");
   const [password, onChangePassword] = useState("");
   const [isPasswordVisible, setPasswordVisible] = useState(false);
 
-  const handleEmailInputChange = (text) => {
-    onChangeEmail(text);
-    onEmailChange(text); // Send email data to the parent
+  const handlePhoneInputChange = (text) => {
+    const raw = text.replace(/\D/g, "");
+
+    const areaCode = raw.substr(0, 3);
+
+    const middlePart = raw.substr(3, 3);
+
+    const lastPart = raw.substr(6, 4);
+
+    // formatting logic to maintain (___)-___-____ format
+    let formatted = text;
+    if (raw.length <= 3) {
+      formatted = `(${areaCode})-`;
+    } else if (raw.length <= 6) {
+      formatted = `(${areaCode})-${middlePart}`;
+    } else if (raw.length <= 10) {
+      formatted = `(${areaCode})-${middlePart}-${lastPart}`;
+    }
+
+    setRawPhone(raw);
+    setFormattedPhone(formatted);
+    onPhoneChange(raw);
   };
 
   const handlePasswordInputChange = (text) => {
     onChangePassword(text);
-    onPasswordChange(text); // Send password data to the parent
+    onPasswordChange(text);
   };
 
   const togglePasswordVisibility = () => {
@@ -33,17 +57,16 @@ const AuthTextFields = ({ onEmailChange, onPasswordChange }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={global_text_styles.label}>Email</Text>
       <TextInput
         style={global_text_styles.input}
-        onChangeText={handleEmailInputChange}
-        value={email}
-        placeholder="Enter your email"
-        keyboardType="default"
+        onChangeText={handlePhoneInputChange}
+        value={rawPhone.length === 10 ? formattedPhone : rawPhone}
+        placeholder="Phone number: (___)-___-____"
+        keyboardType="phone-pad"
         placeholderTextColor="black"
+        maxLength={14} // Limit to the (___)-___-____ format
       />
 
-      <Text style={global_text_styles.label}>Password</Text>
       <View style={styles.passwordInput}>
         <TextInput
           style={global_text_styles.input}
@@ -79,7 +102,8 @@ const styles = StyleSheet.create({
   },
   eyeIcon: {
     position: "absolute",
-    right: 10, // Adjust this value to position the icon as needed
+    bottom: screenHeight * 0.025,
+    right: 10,
   },
 });
 

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import LoadingProgressBar from "./components/LoadingProgressBar";
 
-const loadingTime = 3000;
+const loadingTime = 1000;
 const SplashScreen = ({ onLoadingComplete }) => {
   useEffect(() => {
     const loadingTask = setTimeout(() => {
@@ -26,7 +26,7 @@ const SplashScreen = ({ onLoadingComplete }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#CFEDF5",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },

@@ -25,12 +25,6 @@ const global_button_styles = StyleSheet.create({
     alignItems: "center",
     margin: screenHeight * 0.05,
   },
-  buttonText: {
-    color: "black",
-    fontSize: screenHeight * 0.03,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
 });
 
 export default global_button_styles;

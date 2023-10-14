@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import global_text_styles from "../global_text_styles";
 
 const data = [
   { label: "Employee", value: "Employee" },
@@ -20,16 +21,17 @@ const DropdownComponent = ({ onRoleChange }) => {
     setValue(item.value);
     setIsFocus(false);
 
-    onRoleChange(item.value); // Pass the selected value directly
+    onRoleChange(item.value);
   };
 
   return (
     <View style={styles.container}>
       <Dropdown
         style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
+        placeholderStyle={global_text_styles.regular}
+        selectedTextStyle={global_text_styles.regular}
+        inputSearchStyle={global_text_styles.regular}
+        labelStyle={global_text_styles.regular}
         iconStyle={styles.iconStyle}
         data={data}
         search={false}
