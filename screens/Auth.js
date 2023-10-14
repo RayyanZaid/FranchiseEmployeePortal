@@ -26,7 +26,10 @@ import global_image_styles from "../global_image_styles";
 
 import DropdownComponent from "../components/Dropdown";
 import SignUpComponent from "../components/SignUpComponent";
-
+import {
+  validateSignInFields,
+  validateSignUpFields,
+} from "../errorhandling/autherrors";
 const AuthScreen = () => {
   const navigation = useNavigation();
 
@@ -43,7 +46,7 @@ const AuthScreen = () => {
     setRoleFromChild(role);
   };
   const handlePhoneChange = (phone) => {
-    setPhoneFromChild(phoneFromChild);
+    setPhoneFromChild(phone);
 
     if (phone.length === 10) {
       setIsPhoneLength10(true);
@@ -132,7 +135,15 @@ const AuthScreen = () => {
               padding: 10,
               width: screenWidth * 0.8,
             }}
-            onPress={() => console.log("User clicked Sign in")}
+            onPress={() =>
+              console.log(
+                validateSignInFields(
+                  roleFromChild,
+                  phoneFromChild,
+                  passwordFromChild
+                )
+              )
+            }
           >
             <Text style={global_text_styles.buttonText}>Sign in</Text>
           </TouchableOpacity>
@@ -147,7 +158,17 @@ const AuthScreen = () => {
               padding: 10,
               width: screenWidth * 0.8,
             }}
-            onPress={() => console.log(phoneFromChild.length)}
+            onPress={() =>
+              console.log(
+                validateSignUpFields(
+                  roleFromChild,
+                  phoneFromChild,
+                  passwordFromChild,
+                  verification,
+                  codeFromChild
+                )
+              )
+            }
           >
             <Text style={global_text_styles.buttonText}>Sign up</Text>
           </TouchableOpacity>

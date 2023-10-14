@@ -22,7 +22,7 @@ const SignUpComponent = ({ onChangeCodeParent, roleFromParent }) => {
   let placeHolderText = "";
 
   if (roleFromParent === "Admin") {
-    placeHolderText = "Enter your code here: ";
+    placeHolderText = "Enter your sign up code here: ";
   } else if (roleFromParent === "Employee") {
     placeHolderText = "Restaurant number: ex. JIB 3421";
   } else if (roleFromParent === "Manager") {
