@@ -5,6 +5,7 @@ import { useFonts } from "expo-font";
 
 import SplashScreen from "./SplashScreen";
 import AuthScreen from "./screens/Auth";
+import FirstTimeSignIn from "./screens/FirstTimeSignInScreen";
 
 import {
   NavigationContainer,
@@ -41,6 +42,14 @@ export default function App() {
             <Stack.Screen
               name="SignIn"
               component={AuthScreen}
+              options={{
+                headerShown: false,
+                animation: "none",
+              }}
+            />
+            <Stack.Screen
+              name="FirstTimeSignIn"
+              component={FirstTimeSignIn}
               options={{
                 headerShown: false,
                 animation: "none",
