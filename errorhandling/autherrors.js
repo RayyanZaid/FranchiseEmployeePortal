@@ -1,10 +1,8 @@
 const validateBoth = (role, phoneNumber, password) => {
   if (role.length === 0) {
     return "Please select your role at the top of the screen.";
-  } else if (phoneNumber.length === 0) {
-    return "Please enter your phone number.";
-  } else if (password.length === 0) {
-    return "Please enter your password";
+  } else if (phoneNumber.length < 10) {
+    return "Please enter a valid phone number.";
   } else if (password.length < 4) {
     return "Password must be at least 4 characters";
   } else {
@@ -40,14 +38,6 @@ const validateSignUpFields = (
       return "Please enter your restaurant number";
     } else if (!identifierCodePattern.test(identifierCode)) {
       return "Identifier code must be in the format 'JIB 1234'";
-    }
-  } else if (role === "Admin") {
-    if (identifierCode.length === 0) {
-      return "Please enter your sign up code.";
-    }
-  } else {
-    if (identifierCode.length === 0) {
-      return "Please enter the code from your district manager.";
     }
   }
 

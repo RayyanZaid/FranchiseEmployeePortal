@@ -43,6 +43,7 @@ const AuthScreen = () => {
   const [isSignIn, setIsSignIn] = useState(true);
 
   const handleRoleChange = (role) => {
+    setCodeFromChild("");
     setRoleFromChild(role);
   };
   const handlePhoneChange = (phone) => {
@@ -52,6 +53,7 @@ const AuthScreen = () => {
       setIsPhoneLength10(true);
     } else {
       setIsPhoneLength10(false);
+      setVerification("");
     }
   };
 
@@ -119,7 +121,7 @@ const AuthScreen = () => {
           </View>
         )}
 
-        {isSignIn === false && (
+        {isSignIn === false && roleFromChild == "Employee" && (
           <SignUpComponent
             onChangeCodeParent={handleCodeChange}
             roleFromParent={roleFromChild}
