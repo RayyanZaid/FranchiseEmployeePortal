@@ -159,13 +159,7 @@ const AuthScreen = () => {
 
         {isSignIn === true && (
           <TouchableOpacity
-            style={{
-              backgroundColor: "lightblue",
-              marginTop: screenHeight * 0.05,
-              borderRadius: 20,
-              padding: 10,
-              width: screenWidth * 0.8,
-            }}
+            style={global_button_styles.signUpButton}
             onPress={() => signIn()}
           >
             <Text style={global_text_styles.buttonText}>Sign in</Text>
@@ -174,13 +168,7 @@ const AuthScreen = () => {
 
         {isSignIn === false && (
           <TouchableOpacity
-            style={{
-              backgroundColor: "lightblue",
-              marginTop: screenHeight * 0.05,
-              borderRadius: 20,
-              padding: 10,
-              width: screenWidth * 0.8,
-            }}
+            style={global_button_styles.signUpButton}
             onPress={() =>
               console.log(
                 validateSignUpFields(

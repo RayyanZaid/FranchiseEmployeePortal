@@ -44,4 +44,12 @@ const validateSignUpFields = (
   return "Good";
 };
 
-export { validateSignInFields, validateSignUpFields };
+const validateFirstTimeLogin = (firstName, lastName, imageUploaded) => {
+  if (firstName.length === 0 || lastName.length === 0) {
+    return "Fill out First and Last name";
+  }
+
+  return "Good";
+};
+
+export { validateSignInFields, validateSignUpFields, validateFirstTimeLogin };
