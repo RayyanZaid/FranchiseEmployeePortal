@@ -9,11 +9,10 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native-camera-roll/camera-roll": "^5.10.0",
     "@react-navigation/native": "^6.1.8",
+    "expo": "^49.0.13",
     "@react-navigation/native-stack": "^6.9.14",
     "@react-navigation/stack": "^6.3.18",
-    "expo": "^49.0.13",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
     "react-native": "0.72.5",
@@ -24,10 +23,10 @@
     "react-native-screens": "~3.22.0",
     "react-native-typography": "^1.4.1",
     "react-native-vector-icons": "^10.0.0",
-    "react-navigation": "^5.0.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "react-navigation": "^5.0.0",
+    "@react-native-camera-roll/camera-roll": "^5.10.0",
+    "expo-image-picker": "~14.3.2",
+    "expo-file-system": "~15.4.4"
   },
   "private": true
 }

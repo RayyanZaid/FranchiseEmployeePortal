@@ -12,6 +12,9 @@ import {
   useNavigationContainerRef,
 } from "@react-navigation/native";
 
+import FileSystem from "expo-file-system";
+import ImagePicker from "expo-image-picker";
+
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 

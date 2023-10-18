@@ -14,6 +14,7 @@ import {
 } from "react-native";
 
 import InputBoxComponent from "../components/InputBoxComponent";
+import ImageUploadComponent from "../components/ImageUploadComponent";
 const FirstTimeSignIn = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -38,6 +39,7 @@ const FirstTimeSignIn = () => {
         placeholder="Last name"
         onChangeParent={handleLastNameChange}
       />
+      <ImageUploadComponent />
     </View>
   );
 };
