@@ -62,14 +62,14 @@ const FirstTimeSignIn = () => {
       );
       console.log(response);
       if (response === "Good") {
-        navigation.navigate("SignIn");
+        navigation.navigate("Home");
       } else {
         // Handle the case where the sign-in failed
-        console.log("Sign-in failed: ", response);
+        console.log("Save Profile Failed: ", response);
       }
     } catch (error) {
       // Handle the case where network or other errors occur.
-      console.error("Error during sign-in: ", error);
+      console.error("Error during Save Profile: ", error);
     }
   };
 
