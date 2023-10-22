@@ -24,6 +24,8 @@ const imgDir = FileSystem.documentDirectory + "images/";
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
+const defaultProfilePicture = require("../assets/defaultProfilePicture.png");
+
 const ensureDirExists = async () => {
   try {
     const dirInfo = await FileSystem.getInfoAsync(imgDir);
@@ -112,9 +114,15 @@ const ImageUploadComponent = ({ onImageUpload, onImageDelete }) => {
             Upload a Profile Picture
           </Text>
         )}
-        {image && (
-          <View>
+
+        <View style={{ alignItems: "center" }}>
+          {image ? ( // Check if image exists
             <Image source={{ uri: image }} style={styles.image} />
+          ) : (
+            <Image source={defaultProfilePicture} style={styles.image} /> // Display default image
+          )}
+
+          {image && (
             <View
               style={{
                 flexDirection: "row",
@@ -129,8 +137,8 @@ const ImageUploadComponent = ({ onImageUpload, onImageDelete }) => {
                 size={24}
               />
             </View>
-          </View>
-        )}
+          )}
+        </View>
       </View>
 
       <View

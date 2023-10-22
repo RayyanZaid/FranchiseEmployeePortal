@@ -32,6 +32,7 @@ const FirstTimeSignIn = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [imageUploaded, setImageUploaded] = useState(false);
+  const [error, setError] = useState(""); // State for error message
 
   const handleFirstNameChange = (text) => {
     setFirstName(text);
@@ -54,22 +55,11 @@ const FirstTimeSignIn = () => {
   };
 
   const saveProfileInfoAndContinue = () => {
-    try {
-      const response = validateFirstTimeLogin(
-        firstName,
-        lastName,
-        imageUploaded
-      );
-      console.log(response);
-      if (response === "Good") {
-        navigation.navigate("Home");
-      } else {
-        // Handle the case where the sign-in failed
-        console.log("Save Profile Failed: ", response);
-      }
-    } catch (error) {
-      // Handle the case where network or other errors occur.
-      console.error("Error during Save Profile: ", error);
+    const response = validateFirstTimeLogin(firstName, lastName, imageUploaded);
+    if (response === "Good") {
+      navigation.navigate("Home");
+    } else {
+      setError(response); // Set the error message
     }
   };
 
@@ -77,7 +67,7 @@ const FirstTimeSignIn = () => {
     <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <SafeAreaView style={styles.container}>
         <Text style={global_text_styles.buttonText}>
-          Enter you Profile Information
+          Enter your Profile Information
         </Text>
         <View style={styles.inputBoxArea}>
           <InputBoxComponent
@@ -85,21 +75,24 @@ const FirstTimeSignIn = () => {
             placeholder="First name"
             onChangeParent={handleFirstNameChange}
           />
-
           <InputBoxComponent
             value={lastName}
             placeholder="Last name"
             onChangeParent={handleLastNameChange}
           />
-        </View>
 
+          {error && <Text style={global_text_styles.errorText}>{error}</Text>}
+        </View>
         <ImageUploadComponent
           onImageUpload={handleImageUpload}
           onImageDelete={handleImageDelete}
         />
         <TouchableOpacity
           style={global_button_styles.signUpButton}
-          onPress={() => saveProfileInfoAndContinue()}
+          onPress={() => {
+            setError(""); // Clear any previous error message
+            saveProfileInfoAndContinue();
+          }}
         >
           <Text style={global_text_styles.buttonText}>
             Save Profile Information
@@ -115,8 +108,9 @@ export default FirstTimeSignIn;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    paddingVertical: screenHeight * 0.05,
+    backgroundColor: "#fff",
   },
 
   inputBoxArea: {

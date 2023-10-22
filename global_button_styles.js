@@ -19,9 +19,8 @@ const global_button_styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     backgroundColor: "lightblue",
-    marginTop: screenHeight * 0.05,
     borderRadius: 20,
-    padding: 10,
+
     width: screenWidth * 0.8,
     justifyContent: "center",
     alignItems: "center",

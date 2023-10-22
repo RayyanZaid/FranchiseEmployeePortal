@@ -42,7 +42,11 @@ export default function App() {
         <SplashScreen onLoadingComplete={handleLoadingComplete} />
       ) : (
         <NavigationContainer ref={navigationRef}>
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              gestureEnabled: false,
+            }}
+          >
             <Stack.Screen
               name="SignIn"
               component={AuthScreen}
