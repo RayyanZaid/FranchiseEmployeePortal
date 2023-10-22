@@ -5,7 +5,6 @@ const screenHeight = Dimensions.get("window").height;
 
 const global_button_styles = StyleSheet.create({
   signUpButton: {
-    backgroundColor: "#3498db",
     borderRadius: 8,
     paddingVertical: 12,
     paddingHorizontal: 24,
@@ -19,8 +18,31 @@ const global_button_styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    width: screenWidth * 0.7,
-    height: screenHeight * 0.08,
+    backgroundColor: "lightblue",
+    borderRadius: 20,
+
+    width: screenWidth * 0.8,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  smallButton: {
+    backgroundColor: "lightblue",
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    alignSelf: "center",
+    marginTop: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    width: screenWidth * 0.4,
+    height: screenHeight * 0.05,
     justifyContent: "center",
     alignItems: "center",
     margin: screenHeight * 0.05,

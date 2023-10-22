@@ -65,6 +65,15 @@ const global_text_styles = StyleSheet.create({
     color: "blue",
     textDecorationLine: "underline",
   },
+
+  errorText: {
+    ...fontStyles,
+    color: "red",
+    fontStyle: "italic",
+    fontWeight: "bold",
+    textAlign: "center",
+    paddingTop: 10,
+  },
 });
 
 export default global_text_styles;

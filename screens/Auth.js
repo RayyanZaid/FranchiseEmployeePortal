@@ -12,7 +12,6 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import AuthTextFields from "../components/AuthTextFields";
@@ -29,7 +28,12 @@ import SignUpComponent from "../components/SignUpComponent";
 import {
   validateSignInFields,
   validateSignUpFields,
-} from "../errorhandling/autherrors";
+} from "../functions/auth/autherrors";
+
+import { useNavigation } from "@react-navigation/native";
+
+import signInVerification from "../functions/auth/signIn";
+
 const AuthScreen = () => {
   const navigation = useNavigation();
 
@@ -67,6 +71,31 @@ const AuthScreen = () => {
 
   const onSendVerificationCode = () => {
     console.log("Sent a 4-digit code to your phone");
+    const response = signInVerification(
+      roleFromChild,
+      phoneFromChild,
+      passwordFromChild
+    );
+  };
+
+  const signIn = () => {
+    try {
+      const response = signInVerification(
+        roleFromChild,
+        phoneFromChild,
+        passwordFromChild
+      );
+
+      if (response === "Good") {
+        navigation.navigate("FirstTimeSignIn");
+      } else {
+        // Handle the case where the sign-in failed
+        console.log("Sign-in failed: ", response);
+      }
+    } catch (error) {
+      // Handle the case where network or other errors occur.
+      console.error("Error during sign-in: ", error);
+    }
   };
 
   return (
@@ -130,22 +159,8 @@ const AuthScreen = () => {
 
         {isSignIn === true && (
           <TouchableOpacity
-            style={{
-              backgroundColor: "lightblue",
-              marginTop: screenHeight * 0.05,
-              borderRadius: 20,
-              padding: 10,
-              width: screenWidth * 0.8,
-            }}
-            onPress={() =>
-              console.log(
-                validateSignInFields(
-                  roleFromChild,
-                  phoneFromChild,
-                  passwordFromChild
-                )
-              )
-            }
+            style={global_button_styles.signUpButton}
+            onPress={() => signIn()}
           >
             <Text style={global_text_styles.buttonText}>Sign in</Text>
           </TouchableOpacity>
@@ -153,13 +168,7 @@ const AuthScreen = () => {
 
         {isSignIn === false && (
           <TouchableOpacity
-            style={{
-              backgroundColor: "lightblue",
-              marginTop: screenHeight * 0.05,
-              borderRadius: 20,
-              padding: 10,
-              width: screenWidth * 0.8,
-            }}
+            style={global_button_styles.signUpButton}
             onPress={() =>
               console.log(
                 validateSignUpFields(

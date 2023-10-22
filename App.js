@@ -5,11 +5,16 @@ import { useFonts } from "expo-font";
 
 import SplashScreen from "./SplashScreen";
 import AuthScreen from "./screens/Auth";
+import FirstTimeSignIn from "./screens/FirstTimeSignInScreen";
+import HomeScreen from "./screens/HomeScreen";
 
 import {
   NavigationContainer,
   useNavigationContainerRef,
 } from "@react-navigation/native";
+
+import FileSystem from "expo-file-system";
+import ImagePicker from "expo-image-picker";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,10 +42,30 @@ export default function App() {
         <SplashScreen onLoadingComplete={handleLoadingComplete} />
       ) : (
         <NavigationContainer ref={navigationRef}>
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              gestureEnabled: false,
+            }}
+          >
             <Stack.Screen
               name="SignIn"
               component={AuthScreen}
+              options={{
+                headerShown: false,
+                animation: "none",
+              }}
+            />
+            <Stack.Screen
+              name="FirstTimeSignIn"
+              component={FirstTimeSignIn}
+              options={{
+                headerShown: false,
+                animation: "none",
+              }}
+            />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
               options={{
                 headerShown: false,
                 animation: "none",
